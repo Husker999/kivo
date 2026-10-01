@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Kivo — Достигай финансовых целей с ИИ</title>
+    <meta name="description" content="Персональный ИИ-помощник для управления финансами и достижения целей">
+    
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; style-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com https://api.fontshare.com; img-src 'self' data: https:; connect-src 'self';">
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta name="referrer" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=(), payment=()">
+    <meta http-equiv="Strict-Transport-Security" content="max-age=31536000; includeSubDomains">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        :root {
+            --bg-gradient-from: #f5f3ff;
+            --bg-gradient-to: #ede9fe;
+            --text-primary: #1e1b4b;
+            --text-secondary: #4c1d95;
+            --text-muted: #6d28d9;
+            --accent: #7c3aed;
+            --accent-hover: #6d28d9;
+            --card-bg: rgba(255, 255, 255, 0.55);
+            --card-border: rgba(255, 255, 255, 0.4);
+            --nav-bg: rgba(245, 243, 255, 0.7);
+            --footer-text: #1e1b4b;
+            --footer-muted: #4c1d95;
+            --alert-green-bg: rgba(167, 243, 208, 0.6);
+            --alert-green-border: #10b981;
+            --alert-yellow-bg: rgba(253, 230, 138, 0.6);
+            --alert-yellow-border: #f59e0b;
+            --alert-blue-bg: rgba(191, 219, 254, 0.6);
+            --alert-blue-border: #3b82f6;
+            --progress-bg: rgba(139, 92, 246, 0.2);
+            --shadow: 0 8px 32px rgba(124, 58, 237, 0.08);
+            --shadow-hover: 0 16px 48px rgba(124, 58, 237, 0.15);
+            --toggle-bg: rgba(139, 92, 246, 0.15);
+            --toggle-active: #7c3aed;
+            --blob-1: rgba(139, 92, 246, 0.35);
+            --blob-2: rgba(236, 72, 153, 0.25);
+            --blob-3: rgba(59, 130, 246, 0.25);
+            --intro-bg: #0f0a1f;
+            --calc-result-bg: rgba(167, 243, 208, 0.4);
+            --chart-bar: rgba(124, 58, 237, 0.6);
+            --chart-bar-active: rgba(124, 58, 237, 1);
+            --cursor-glow: rgba(124, 58, 237, 0.3);
+            --cursor-trail: rgba(124, 58, 237, 0.15);
+            --grid-color: rgba(124, 58, 237, 0.08);
+            --toast-bg: rgba(30, 27, 75, 0.95);
+            --toast-text: #f5f3ff;
+            --input-bg: rgba(255, 255, 255, 0.8);
+            --input-border: rgba(139, 92, 246, 0.3);
+            --empty-bg: rgba(139, 92, 246, 0.08);
+            --filter-bg: rgba(253, 230, 138, 0.5);
+            --filter-border: #f59e0b;
+            --modal-bg: rgba(0, 0, 0, 0.7);
+        }
+
+        body.dark {
+            --bg-gradient-from: #0f0a1f;
+            --bg-gradient-to: #1a0f2e;
+            --text-primary: #f5f3ff;
+            --text-secondary: #ddd6fe;
+            --text-muted: #c4b5fd;
+            --accent: #a78bfa;
+            --accent-hover: #8b5cf6;
+            --card-bg: rgba(30, 27, 75, 0.55);
+            --card-border: rgba(139, 92, 246, 0.2);
+            --nav-bg: rgba(15, 10, 31, 0.7);
+            --footer-text: #f5f3ff;
+            --footer-muted: #c4b5fd;
+            --alert-green-bg: rgba(6, 78, 59, 0.7);
+            --alert-green-border: #10b981;
+            --alert-yellow-bg: rgba(113, 63, 18, 0.7);
+            --alert-yellow-border: #f59e0b;
+            --alert-blue-bg: rgba(30, 58, 138, 0.7);
+            --alert-blue-border: #60a5fa;
+            --progress-bg: rgba(139, 92, 246, 0.3);
+            --shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-hover: 0 16px 48px rgba(139, 92, 246, 0.2);
+            --toggle-bg: rgba(139, 92, 246, 0.2);
+            --toggle-active: #a78bfa;
+            --blob-1: rgba(139, 92, 246, 0.5);
+            --blob-2: rgba(236, 72, 153, 0.4);
+            --blob-3: rgba(59, 130, 246, 0.4);
+            --intro-bg: #0f0a1f;
+            --calc-result-bg: rgba(6, 78, 59, 0.5);
+            --chart-bar: rgba(167, 139, 250, 0.4);
+            --chart-bar-active: rgba(167, 139, 250, 1);
+            --cursor-glow: rgba(167, 139, 250, 0.4);
+            --cursor-trail: rgba(167, 139, 250, 0.2);
+            --grid-color: rgba(167, 139, 250, 0.05);
+            --toast-bg: rgba(245, 243, 255, 0.95);
+            --toast-text: #1e1b4b;
+            --input-bg: rgba(15, 10, 31, 0.8);
+            --input-border: rgba(167, 139, 250, 0.3);
+            --empty-bg: rgba(139, 92, 246, 0.1);
+            --filter-bg: rgba(113, 63, 18, 0.5);
+            --filter-border: #f59e0b;
+            --modal-bg: rgba(0, 0, 0, 0.8);
+        }
+
+        * {
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--bg-gradient-from), var(--bg-gradient-to));
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            color: var(--text-primary);
+            min-height: 100vh;
+            font-family: 'Outfit', -apple-system, sans-serif;
+            position: relative;
+            overflow-x: hidden;
+            transition: background 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .bg-grid {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background-image: radial-gradient(circle, var(--grid-color) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .cursor-glow {
+            position: fixed;
+            width: 80px; height: 80px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--cursor-glow) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            will-change: transform;
+        }
+        .cursor-glow.active { opacity: 1; }
+
+        .cursor-trail {
+            position: fixed;
+            width: 40px; height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--cursor-trail) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 9997;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            will-change: transform;
+        }
+        .cursor-trail.active { opacity: 1; }
+
+        .falling-star {
+            position: fixed;
+            width: 3px; height: 3px;
+            background: var(--accent);
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 0;
+            pointer-events: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% { opacity: 0; transform: translateY(-100vh) translateX(0); }
+            10% { opacity: 0.6; }
+            90% { opacity: 0.6; }
+            100% { opacity: 0; transform: translateY(100vh) translateX(50px); }
+        }
+
+        .intro-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--intro-bg);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .intro-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        .intro-logo {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(4rem, 12vw, 7rem);
+            font-weight: 700;
+            color: var(--accent);
+            opacity: 0;
+            transform: scale(0.8);
+            letter-spacing: -0.04em;
+            animation: introLogoReveal 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+            text-shadow: 0 0 60px rgba(124, 58, 237, 0.5);
+        }
+        .intro-divider {
+            width: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--accent), transparent);
+            animation: introDividerExpand 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.8s forwards;
+        }
+        .intro-tagline {
+            font-family: 'Outfit', sans-serif;
+            font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+            color: rgba(245, 243, 255, 0.7);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(10px);
+            animation: introTaglineReveal 0.8s ease 1.2s forwards;
+        }
+
+        @keyframes introLogoReveal {
+            0% { opacity: 0; transform: scale(0.8); filter: blur(10px); }
+            60% { opacity: 1; transform: scale(1.02); filter: blur(0); }
+            100% { opacity: 1; transform: scale(1); filter: blur(0); }
+        }
+        @keyframes introDividerExpand {
+            0% { width: 0; opacity: 0; }
+            100% { width: min(200px, 60vw); opacity: 1; }
+        }
+        @keyframes introTaglineReveal {
+            0% { opacity: 0; transform: translateY(10px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes introExit {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0; transform: scale(1.05); visibility: hidden; }
+        }
+        .intro-overlay.exiting {
+            animation: introExit 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        h1, h2, h3, .font-heading, .logo {
+            font-family: 'Unbounded', sans-serif;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .blob {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(120px);
+            opacity: 0.8;
+            z-index: 0;
+            pointer-events: none;
+        }
+        .blob-1 { width: 600px; height: 600px; background: var(--blob-1); top: -200px; left: -200px; animation: float1 20s ease-in-out infinite; }
+        .blob-2 { width: 550px; height: 550px; background: var(--blob-2); top: 40%; right: -200px; animation: float2 25s ease-in-out infinite; }
+        .blob-3 { width: 500px; height: 500px; background: var(--blob-3); bottom: -150px; left: 20%; animation: float3 22s ease-in-out infinite; }
+
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(100px, 80px) scale(1.15); }
+            66% { transform: translate(-50px, 40px) scale(0.95); }
+        }
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(-80px, -60px) scale(1.2); }
+            66% { transform: translate(40px, -90px) scale(0.9); }
+        }
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            33% { transform: translate(70px, -80px) scale(1.15); }
+            66% { transform: translate(-90px, 50px) scale(0.95); }
+        }
+
+        .hero-title { font-size: clamp(2.2rem, 6.5vw, 5rem); line-height: 1.1; }
+        .hero-subtitle { font-size: clamp(1.15rem, 2.3vw, 1.4rem); line-height: 1.6; }
+        .section-title { font-size: clamp(2rem, 4.5vw, 3.2rem); }
+        .card-title { font-size: clamp(1.3rem, 2.8vw, 1.7rem); }
+        .card-description { font-size: clamp(1.1rem, 2vw, 1.3rem); line-height: 1.7; }
+        .demo-card-title { font-size: clamp(1.3rem, 2.8vw, 1.6rem); }
+        .demo-card-text { font-size: clamp(1.05rem, 1.9vw, 1.2rem); line-height: 1.6; }
+        .demo-card-value { font-size: clamp(1.3rem, 2.8vw, 1.7rem); }
+        .demo-card-large { font-size: clamp(1.6rem, 3.2vw, 2.2rem); }
+
+        .scroll-reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .scroll-reveal.visible { opacity: 1; transform: translateY(0); }
+        .scroll-reveal.delay-1 { transition-delay: 0.1s; }
+        .scroll-reveal.delay-2 { transition-delay: 0.2s; }
+        .scroll-reveal.delay-3 { transition-delay: 0.3s; }
+
+        /* Анимация появления карточки цели */
+        @keyframes goalAppear {
+            0% { opacity: 0; transform: translateY(30px) scale(0.95); }
+            100% { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .goal-appear {
+            animation: goalAppear 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in { animation: fadeIn 0.8s ease-out; }
+        .progress-bar { transition: width 1s ease-out; }
+
+        .section-highlight {
+            animation: sectionPulse 1.2s ease;
+        }
+        @keyframes sectionPulse {
+            0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
+            50% { box-shadow: 0 0 0 20px rgba(124, 58, 237, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+        }
+
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 10000;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            pointer-events: none;
+        }
+        .toast {
+            background: var(--toast-bg);
+            color: var(--toast-text);
+            padding: 1rem 1.5rem;
+            border-radius: 1rem;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            font-family: 'Outfit', sans-serif;
+            font-weight: 500;
+            font-size: 1rem;
+            opacity: 0;
+            transform: translateX(100px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            pointer-events: auto;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            max-width: 340px;
+        }
+        .toast.show {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .toast-icon {
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: var(--modal-bg);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 10001;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            padding: 1rem;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: var(--card-bg);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid var(--card-border);
+            border-radius: 2rem;
+            padding: 2.5rem;
+            max-width: 480px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            transform: scale(0.9);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: center;
+            position: relative;
+        }
+        .modal-overlay.active .modal-content {
+            transform: scale(1);
+        }
+        .modal-close {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .modal-close:hover {
+            background: var(--accent);
+            color: white;
+            transform: rotate(90deg);
+        }
+        .modal-timer {
+            font-family: 'Unbounded', sans-serif;
+            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-weight: 700;
+            color: var(--accent);
+            margin: 1.5rem 0;
+            letter-spacing: -0.02em;
+        }
+        .modal-timer-label {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-modal-content {
+            max-width: 400px;
+        }
+        .input-modal-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+        .input-modal-subtitle {
+            font-size: 1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+        .input-modal-field {
+            width: 100%;
+            padding: 1rem 1.25rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 1rem;
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            outline: none;
+            box-sizing: border-box;
+            margin-bottom: 1.5rem;
+        }
+        .input-modal-field:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+        }
+        .input-modal-buttons {
+            display: flex;
+            gap: 0.75rem;
+        }
+        .input-modal-buttons button {
+            flex: 1;
+            padding: 0.9rem;
+            border-radius: 1rem;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        .btn-modal-cancel {
+            background: var(--card-bg);
+            color: var(--text-muted);
+            border: 2px solid var(--card-border) !important;
+        }
+        .btn-modal-cancel:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444 !important;
+            color: #ef4444;
+        }
+        .btn-modal-confirm {
+            background: var(--accent);
+            color: white;
+        }
+        .btn-modal-confirm:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+        }
+
+        .theme-toggle {
+            display: flex;
+            background: var(--toggle-bg);
+            border-radius: 9999px;
+            padding: 4px;
+            gap: 4px;
+            transition: background-color 0.3s ease;
+        }
+        .theme-btn {
+            width: 36px; height: 36px;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: transparent;
+            border: none;
+            font-size: 18px;
+        }
+        .theme-btn:hover { transform: scale(1.1); }
+        .theme-btn.active {
+            background: var(--toggle-active);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+        .theme-btn.active .theme-icon { filter: brightness(0) invert(1); }
+        .theme-icon { transition: filter 0.3s ease; }
+
+        .mobile-menu {
+            display: none;
+            position: absolute;
+            top: 100%; left: 0; right: 0;
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 1rem;
+            border-bottom: 1px solid var(--card-border);
+            box-shadow: var(--shadow);
+            z-index: 40;
+        }
+        .mobile-menu.active { display: block; }
+        .burger {
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            padding: 8px;
+            z-index: 41;
+        }
+        .burger span {
+            width: 24px; height: 2px;
+            background: var(--text-primary);
+            transition: all 0.3s ease;
+        }
+        .burger.active span:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+        .burger.active span:nth-child(2) { opacity: 0; }
+        .burger.active span:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
+        @media (max-width: 1024px) { .side-features { display: none !important; } }
+        @media (max-width: 768px) {
+            .desktop-nav { display: none !important; }
+            .burger { display: flex; }
+            .cursor-glow, .cursor-trail { display: none !important; }
+            .toast-container { bottom: 1rem; right: 1rem; left: 1rem; }
+            .toast { max-width: 100%; }
+        }
+
+        .feature-card, .demo-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            box-shadow: var(--shadow);
+            transition: box-shadow 0.4s ease, transform 0.4s ease;
+        }
+        .feature-card:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-6px);
+        }
+
+        .btn-primary {
+            background: var(--accent);
+            color: white;
+            font-family: 'Outfit', sans-serif;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+        }
+        .btn-primary:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.3);
+        }
+        .btn-secondary {
+            background: var(--card-bg);
+            color: var(--accent);
+            border: 2px solid var(--accent);
+            backdrop-filter: blur(10px);
+            font-weight: 600;
+            cursor: pointer;
+            font-family: 'Outfit', sans-serif;
+            font-size: 1rem;
+        }
+        .btn-secondary:hover {
+            background: var(--accent);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .text-main { color: var(--text-primary); }
+        .text-sec { color: var(--text-secondary); }
+        .text-muted { color: var(--text-muted); }
+        .text-accent { color: var(--accent); }
+        .nav-link { color: var(--text-secondary); font-weight: 500; cursor: pointer; font-size: 1rem; }
+        .nav-link:hover { color: var(--accent); }
+
+        .site-header {
+            background: var(--nav-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .site-footer {
+            color: var(--footer-text);
+            border-top: 1px solid var(--card-border);
+            margin-top: 4rem;
+        }
+        .site-footer .footer-muted { color: var(--footer-muted); }
+
+        .icon {
+            opacity: 0.92;
+            transition: all 0.4s ease;
+            display: inline-block;
+        }
+        .icon:hover { opacity: 1; }
+        .icon-target { animation: targetBounce 2.5s ease-in-out infinite; }
+        .icon-target:hover { animation: targetSpin 0.7s ease; }
+        .icon-stop { animation: stopPulse 2s ease-in-out infinite; }
+        .icon-stop:hover { animation: stopShake 0.5s ease; }
+        .icon-robot { animation: robotFloat 3.5s ease-in-out infinite; }
+        .icon-robot:hover { animation: robotDance 0.9s ease; }
+
+        @keyframes targetBounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-6px); }
+        }
+        @keyframes targetSpin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.25); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+        @keyframes stopPulse {
+            0%, 100% { transform: scale(1); opacity: 0.92; }
+            50% { transform: scale(1.08); opacity: 1; }
+        }
+        @keyframes stopShake {
+            0%, 100% { transform: translateX(0) rotate(0deg); }
+            20% { transform: translateX(-8px) rotate(-8deg); }
+            40% { transform: translateX(8px) rotate(8deg); }
+            60% { transform: translateX(-6px) rotate(-6deg); }
+            80% { transform: translateX(6px) rotate(6deg); }
+        }
+        @keyframes robotFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-4px) rotate(4deg); }
+        }
+        @keyframes robotDance {
+            0% { transform: scale(1) rotate(0deg); }
+            25% { transform: scale(1.2) rotate(-12deg); }
+            50% { transform: scale(1.25) rotate(12deg); }
+            75% { transform: scale(1.2) rotate(-6deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .side-features {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 5;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .side-features.left { left: 2.5rem; }
+        .side-features.right { right: 2.5rem; }
+        .side-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            cursor: pointer;
+            min-width: 220px;
+        }
+        .side-card:nth-child(1) { animation: sideFloat1 4s ease-in-out infinite; }
+        .side-card:nth-child(2) { animation: sideFloat2 4.5s ease-in-out infinite; }
+        .side-card:hover {
+            transform: scale(1.08);
+            box-shadow: var(--shadow-hover);
+        }
+        .side-card-icon { font-size: 2.5rem; margin-bottom: 0.75rem; opacity: 0.9; }
+        .side-card-title { font-size: 1rem; font-weight: 600; color: var(--text-secondary); margin-bottom: 0.4rem; }
+        .side-card-value {
+            font-size: 1.75rem;
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'Unbounded', sans-serif;
+        }
+
+        @keyframes sideFloat1 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes sideFloat2 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(10px); }
+        }
+
+        .calculator-slider {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 100%;
+            height: 8px;
+            background: var(--progress-bg);
+            border-radius: 9999px;
+            outline: none;
+        }
+        .calculator-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 24px; height: 24px;
+            background: var(--accent);
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            box-shadow: 0 2px 8px rgba(124, 58, 237, 0.4);
+        }
+        .calculator-slider::-webkit-slider-thumb:hover { transform: scale(1.2); }
+
+        .pricing-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--card-border);
+            border-radius: 1.5rem;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+        }
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-hover);
+        }
+        .pricing-card.featured {
+            border: 2px solid var(--accent);
+            transform: scale(1.05);
+        }
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .alert-box {
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .simplified-stats {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+        .stat-item { flex: 1; min-width: 100px; }
+        .stat-label { font-size: 0.85rem; color: var(--text-muted); margin-bottom: 0.3rem; }
+        .stat-value {
+            font-size: clamp(1.2rem, 2.2vw, 1.5rem);
+            font-weight: 700;
+            color: var(--accent);
+            font-family: 'Unbounded', sans-serif;
+        }
+
+        .btn-contribute {
+            background: var(--accent);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            font-size: 1rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            min-height: 44px;
+            min-width: 44px;
+        }
+        .btn-contribute:hover {
+            background: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
+        }
+        .btn-contribute:active {
+            transform: translateY(0);
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 1.1rem 1.25rem;
+            background: var(--input-bg);
+            border: 2px solid var(--input-border);
+            border-radius: 1rem;
+            color: var(--text-primary);
+            font-family: 'Outfit', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            outline: none;
+            box-sizing: border-box;
+            -webkit-appearance: none;
+            -moz-appearance: textfield;
+        }
+        .input-field::-webkit-outer-spin-button,
+        .input-field::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        .input-field:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 4px rgba(124, 58, 237, 0.15);
+        }
+        .input-field::placeholder {
+            color: var(--text-muted);
+            opacity: 0.5;
+            font-weight: 400;
+        }
+
+        .empty-state {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 3rem 2rem;
+            min-height: 320px;
+            background: var(--empty-bg);
+            border: 2px dashed var(--card-border);
+            border-radius: 1.5rem;
+        }
+        .empty-icon {
+            font-size: 4rem;
+            margin-bottom: 1.5rem;
+            opacity: 0.6;
+            animation: emptyFloat 3s ease-in-out infinite;
+        }
+        @keyframes emptyFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .empty-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.75rem;
+        }
+        .empty-text {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+            max-width: 280px;
+        }
+
+        .active-filter {
+            background: var(--filter-bg);
+            border: 2px solid var(--filter-border);
+            border-radius: 1.5rem;
+            padding: 1.5rem;
+            margin-top: 1.5rem;
+            animation: filterPulse 2s ease-in-out infinite;
+        }
+        @keyframes filterPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.3); }
+            50% { box-shadow: 0 0 0 8px rgba(245, 158, 11, 0); }
+        }
+        .active-filter-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .active-filter-title {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .active-filter-timer {
+            font-family: 'Unbounded', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--filter-border);
+        }
+        .active-filter-info {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .btn-cancel-filter {
+            background: transparent;
+            color: var(--text-muted);
+            border: 1px solid var(--card-border);
+            padding: 0.6rem 1.2rem;
+            border-radius: 9999px;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Outfit', sans-serif;
+            min-height: 44px;
+        }
+        .btn-cancel-filter:hover {
+            background: rgba(239, 68, 68, 0.1);
+            border-color: #ef4444;
+            color: #ef4444;
+        }
+
+        @media (max-width: 768px) {
+            .impulse-comparison { grid-template-columns: 1fr; gap: 0.75rem; }
+            .simplified-stats { gap: 1rem; }
+            .stat-item { min-width: 80px; }
+            .input-field { font-size: 1.05rem; padding: 1rem 1rem; }
+            .empty-state { min-height: 260px; padding: 2rem 1.5rem; }
+            .empty-icon { font-size: 3rem; }
+            .active-filter-timer { font-size: 1.4rem; }
+            .hero-title { font-size: clamp(2rem, 7vw, 3.5rem); }
+            .section-title { font-size: clamp(1.8rem, 5vw, 2.5rem); }
+            .card-description { font-size: clamp(1rem, 2.2vw, 1.15rem); }
+            .demo-card-text { font-size: clamp(1rem, 2vw, 1.1rem); }
+        }
+
+        @media (max-width: 360px) {
+            .hero-title { font-size: 1.8rem; }
+            .section-title { font-size: 1.6rem; }
+            .card-title { font-size: 1.2rem; }
+            .card-description { font-size: 1rem; }
+        }
+
+        @media (min-width: 1600px) {
+            .hero-title { font-size: 5.5rem; }
+            .section-title { font-size: 3.5rem; }
+        }
+    </style>
+</head>
+<body class="antialiased">
+    
+    <div class="bg-grid"></div>
+
+    <div class="cursor-glow" id="cursorGlow"></div>
+    <div class="cursor-trail" id="cursorTrail1"></div>
+    <div class="cursor-trail" id="cursorTrail2"></div>
+    <div class="cursor-trail" id="cursorTrail3"></div>
+
+    <div id="fallingStars"></div>
+
+    <div class="toast-container" id="toastContainer"></div>
+
+    <div class="modal-overlay" id="impulseModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose" aria-label="Закрыть">✕</button>
+            <div style="font-size: 3rem; margin-bottom: 0.5rem;">⏳</div>
+            <h3 style="font-family: 'Unbounded', sans-serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 0.5rem;">Фильтр активирован</h3>
+            <p style="color: var(--text-muted); font-size: 1rem; margin-bottom: 1rem;">Таймер запущен. Вернись через 48 часов.</p>
+            <div class="modal-timer-label">Осталось ждать</div>
+            <div class="modal-timer" id="modalTimer">47:59:59</div>
+            <p style="color: var(--text-secondary); font-size: 1rem; line-height: 1.5; margin-bottom: 1.5rem;">
+                <strong style="color: var(--accent);">73% людей</strong> передумывают покупать после ожидания. 
+                Если через 48 часов ты всё ещё хочешь это — покупай осознанно.
+            </p>
+            <button class="btn-primary w-full py-3 rounded-full" id="modalGotIt" style="font-size: 1.05rem;">
+                Понял, буду ждать
+            </button>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="inputModal">
+        <div class="modal-content input-modal-content">
+            <button class="modal-close" id="inputModalClose" aria-label="Закрыть">✕</button>
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">💰</div>
+            <div class="input-modal-title">Внеси взнос</div>
+            <div class="input-modal-subtitle" id="inputModalSubtitle">Ежемесячный взнос: 0₽</div>
+            <input type="number" class="input-modal-field" id="inputModalField" placeholder="0" min="1" inputmode="numeric">
+            <div class="input-modal-buttons">
+                <button class="btn-modal-cancel" id="inputModalCancel">Отмена</button>
+                <button class="btn-modal-confirm" id="inputModalConfirm">Внести</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay" id="confirmModal">
+        <div class="modal-content input-modal-content">
+            <div style="font-size: 2.5rem; margin-bottom: 0.5rem;">⚠️</div>
+            <div class="input-modal-title" id="confirmModalTitle">Подтверждение</div>
+            <div class="input-modal-subtitle" id="confirmModalText" style="margin-bottom: 2rem;">Ты уверен?</div>
+            <div class="input-modal-buttons">
+                <button class="btn-modal-cancel" id="confirmModalCancel">Отмена</button>
+                <button class="btn-modal-confirm" id="confirmModalConfirm" style="background: #ef4444;">Подтвердить</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="intro-overlay" id="introOverlay">
+        <div class="intro-content">
+            <div class="intro-logo">Kivo</div>
+            <div class="intro-divider"></div>
+            <div class="intro-tagline">Достигай финансовых целей с ИИ</div>
+        </div>
+    </div>
+
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <div class="side-features left">
+        <div class="side-card">
+            <div class="side-card-icon">👥</div>
+            <div class="side-card-title">Пользователей</div>
+            <div class="side-card-value">500+</div>
+        </div>
+        <div class="side-card">
+            <div class="side-card-icon">💰</div>
+            <div class="side-card-title">Сэкономлено</div>
+            <div class="side-card-value">2.5M ₽</div>
+        </div>
+    </div>
+
+    <div class="side-features right">
+        <div class="side-card">
+            <div class="side-card-icon">🎯</div>
+            <div class="side-card-title">Целей достигнуто</div>
+            <div class="side-card-value">1,200+</div>
+        </div>
+        <div class="side-card">
+            <div class="side-card-icon">⚡</div>
+            <div class="side-card-title">Средний рост</div>
+            <div class="side-card-value">+35%</div>
+        </div>
+    </div>
+
+    <header class="site-header">
+        <div class="container mx-auto px-4 py-3 md:py-4">
+            <nav class="flex justify-between items-center relative">
+                <div class="flex items-center gap-3">
+                    <div class="theme-toggle">
+                        <button class="theme-btn active" id="lightBtn" aria-label="Светлая тема">
+                            <span class="theme-icon">☀️</span>
+                        </button>
+                        <button class="theme-btn" id="darkBtn" aria-label="Тёмная тема">
+                            <span class="theme-icon">🌙</span>
+                        </button>
+                    </div>
+                    <div class="logo text-xl md:text-2xl lg:text-3xl font-bold text-accent">Kivo</div>
+                </div>
+
+                <div class="desktop-nav flex items-center gap-3 md:gap-6">
+                    <a class="nav-link transition hidden sm:inline text-sm md:text-base" data-scroll="features">Возможности</a>
+                    <a class="nav-link transition hidden sm:inline text-sm md:text-base" data-scroll="demo">Демо</a>
+                    <a class="nav-link transition hidden sm:inline text-sm md:text-base" data-scroll="pricing">Тарифы</a>
+                    <button class="btn-primary px-3 md:px-6 py-2 rounded-full transition text-xs md:text-sm lg:text-base" data-scroll="calculator">
+                        Начать бесплатно
+                    </button>
+                </div>
+
+                <div class="burger" id="burger" aria-label="Меню">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </nav>
+
+            <div class="mobile-menu md:hidden" id="mobileMenu">
+                <a class="block py-3 nav-link transition border-b" data-scroll="features" style="border-color: var(--card-border);">Возможности</a>
+                <a class="block py-3 nav-link transition border-b" data-scroll="demo" style="border-color: var(--card-border);">Демо</a>
+                <a class="block py-3 nav-link transition border-b" data-scroll="pricing" style="border-color: var(--card-border);">Тарифы</a>
+                <button class="btn-primary w-full mt-3 px-6 py-3 rounded-full transition" data-scroll="calculator">
+                    Начать бесплатно
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <section class="container mx-auto px-4 md:px-8 py-12 md:py-20 text-center fade-in relative z-10" style="max-width: 1440px;">
+        <h1 class="hero-title font-bold text-main mb-4 md:mb-6">
+            Достигай финансовых целей<br class="hidden sm:block">
+            <span class="text-accent">с ИИ-помощником</span>
+        </h1>
+        <p class="hero-subtitle text-sec mb-8 md:mb-10 max-w-3xl mx-auto px-2 leading-relaxed">
+            Kivo анализирует твои траты и показывает, как достичь цели быстрее. 
+            Никаких сложных таблиц — только понятные инсайты.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3 justify-center px-4">
+            <button class="btn-primary px-6 md:px-8 py-3 md:py-4 rounded-full text-sm md:text-base lg:text-lg transition" data-scroll="calculator">
+                Попробовать бесплатно
+            </button>
+            <button class="btn-secondary px-6 md:px-8 py-3 md:py-4 rounded-full text-sm md:text-base lg:text-lg transition" data-scroll="demo">
+                Смотреть демо
+            </button>
+        </div>
+    </section>
+
+    <section id="features" class="container mx-auto px-4 md:px-8 py-12 md:py-20 relative z-10" style="max-width: 1440px;">
+        <h2 class="section-title font-bold text-center text-main mb-8 md:mb-12 scroll-reveal">Что умеет Kivo</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8">
+            <div class="feature-card p-6 md:p-8 rounded-3xl scroll-reveal delay-1">
+                <div class="text-4xl md:text-5xl mb-4 icon icon-target">🎯</div>
+                <h3 class="card-title font-bold mb-3 text-main">Персональные цели</h3>
+                <p class="card-description text-sec">Поставь цель — накопить на отпуск, машину, переезд. Kivo покажет, как это сделать с учётом твоих реальных трат.</p>
+            </div>
+            <div class="feature-card p-6 md:p-8 rounded-3xl scroll-reveal delay-2">
+                <div class="text-4xl md:text-5xl mb-4 icon icon-stop">🛑</div>
+                <h3 class="card-title font-bold mb-3 text-main">Импульс-фильтр</h3>
+                <p class="card-description text-sec">Хочешь купить что-то дорогое? Kivo поставит таймер и покажет, как эта покупка повлияет на твою цель.</p>
+            </div>
+            <div class="feature-card p-6 md:p-8 rounded-3xl scroll-reveal delay-3">
+                <div class="text-4xl md:text-5xl mb-4 icon icon-robot">🤖</div>
+                <h3 class="card-title font-bold mb-3 text-main">ИИ-анализ</h3>
+                <p class="card-description text-sec">Каждую неделю Kivo анализирует твои траты и даёт персональные советы, где можно сэкономить без боли.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator" class="container mx-auto px-4 md:px-8 py-12 md:py-20 relative z-10" style="max-width: 1440px;">
+        <h2 class="section-title font-bold text-center text-main mb-8 md:mb-12 scroll-reveal">Рассчитай свою цель</h2>
+        <div class="max-w-5xl mx-auto feature-card p-6 md:p-10 rounded-3xl scroll-reveal">
+            <div class="space-y-6">
+                <div>
+                    <label class="block text-base md:text-lg font-semibold text-main mb-3" style="font-size: 1.15rem;">Сколько хочешь накопить?</label>
+                    <input type="range" min="10000" max="1000000" value="500000" step="10000" class="calculator-slider" id="goalAmount">
+                    <div class="flex items-center justify-between mt-3 gap-2">
+                        <span class="text-sec text-xs md:text-sm whitespace-nowrap">10 000₽</span>
+                        <span class="text-lg md:text-2xl lg:text-3xl font-bold text-accent text-center flex-1" id="goalDisplay">500 000₽</span>
+                        <span class="text-sec text-xs md:text-sm whitespace-nowrap">1 000 000₽</span>
+                    </div>
+                </div>
+                <div>
+                    <label class="block text-base md:text-lg font-semibold text-main mb-3" style="font-size: 1.15rem;">За сколько месяцев?</label>
+                    <input type="range" min="1" max="24" value="12" class="calculator-slider" id="goalMonths">
+                    <div class="flex items-center justify-between mt-3 gap-2">
+                        <span class="text-sec text-xs md:text-sm whitespace-nowrap">1 мес</span>
+                        <span class="text-lg md:text-2xl lg:text-3xl font-bold text-accent text-center flex-1" id="monthsDisplay">12 месяцев</span>
+                        <span class="text-sec text-xs md:text-sm whitespace-nowrap">24 мес</span>
+                    </div>
+                </div>
+                <div class="alert-box p-5 md:p-6 rounded-2xl border-l-4" style="background: var(--calc-result-bg); border-color: var(--alert-green-border);">
+                    <p class="text-base md:text-lg text-main mb-2 font-semibold" style="font-size: 1.2rem;">Тебе нужно откладывать:</p>
+                    <p class="demo-card-large font-bold text-accent mb-2" id="monthlyAmount">41 666₽/мес</p>
+                    <p class="text-sm md:text-base text-main" style="font-size: 1.1rem;">С Kivo и сокращением импульсивных трат на 20%: <span class="font-bold" style="color: var(--alert-green-border);" id="kivoAmount">33 333₽/мес</span></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="demo" class="container mx-auto px-4 md:px-8 py-12 md:py-20 relative z-10" style="max-width: 1440px;">
+        <h2 class="section-title font-bold text-center text-main mb-8 md:mb-12 scroll-reveal">Создай свою цель</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-8 max-w-6xl mx-auto">
+            
+            <div class="demo-card p-6 md:p-8 rounded-3xl scroll-reveal delay-1">
+                <h3 class="demo-card-title font-bold mb-5 text-main">Новая цель</h3>
+                
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-main mb-2" style="font-size: 1.05rem;">Название цели</label>
+                        <input type="text" class="input-field" id="goalNameInput" placeholder="Например: Отпуск в Турции">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-main mb-2" style="font-size: 1.05rem;">Сумма (₽)</label>
+                        <input type="number" class="input-field" id="goalSumInput" placeholder="150000" min="1000" max="100000000">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-main mb-2" style="font-size: 1.05rem;">Срок (месяцев)</label>
+                        <input type="number" class="input-field" id="goalMonthsInput" placeholder="6" min="1" max="120">
+                    </div>
+                    
+                    <button class="btn-primary w-full py-3.5 rounded-full transition text-base md:text-lg" id="btnCreateGoal" style="padding: 1rem;">
+                        Создать цель
+                    </button>
+                </div>
+            </div>
+
+            <!-- УБРАН КЛАСС scroll-reveal С ЭТОЙ КАРТОЧКИ! -->
+            <div class="demo-card p-6 md:p-8 rounded-3xl" id="goalCardContainer">
+                <div id="goalEmptyState" class="empty-state">
+                    <div class="empty-icon">🎯</div>
+                    <div class="empty-title">Твоя цель появится здесь</div>
+                    <div class="empty-text">Заполни форму слева и нажми «Создать цель», чтобы начать путь к мечте</div>
+                </div>
+
+                <div id="goalDisplayCard" style="display: none;">
+                    <h3 class="demo-card-title font-bold mb-2 text-main" id="displayGoalName">Моя цель</h3>
+                    <p class="demo-card-text text-sec mb-4" id="displayGoalInfo">Накопить сумму за срок</p>
+                    
+                    <div class="mb-4">
+                        <div class="flex justify-between text-sm text-sec mb-2" style="font-size: 0.95rem;">
+                            <span id="displaySaved">0₽</span>
+                            <span id="displayTotal">0₽</span>
+                        </div>
+                        <div class="w-full rounded-full h-3" style="background: var(--progress-bg);">
+                            <div class="h-3 rounded-full progress-bar" id="displayProgressBar" style="width: 0%; background: var(--accent);"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="simplified-stats">
+                        <div class="stat-item">
+                            <div class="stat-label">Осталось</div>
+                            <div class="stat-value" id="displayRemaining">0₽</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">В месяц</div>
+                            <div class="stat-value" id="displayMonthly">0₽</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-label">Прогресс</div>
+                            <div class="stat-value" id="displayProgress">0%</div>
+                        </div>
+                    </div>
+                    
+                    <div class="alert-box p-4 rounded-2xl border-l-4 flex items-center justify-between gap-3 flex-wrap" style="background: var(--alert-green-bg); border-color: var(--alert-green-border);">
+                        <p class="demo-card-text text-main leading-relaxed flex-1 min-w-0" id="contributeMessage">Внеси первый взнос, чтобы начать движение к цели!</p>
+                        <button class="btn-contribute flex-shrink-0" id="btnContribute">Внести</button>
+                    </div>
+
+                    <div id="activeFilterBlock" class="active-filter" style="display: none;">
+                        <div class="active-filter-header">
+                            <div class="active-filter-title">
+                                <span>⏳</span>
+                                <span>Фильтр активен</span>
+                            </div>
+                            <div class="active-filter-timer" id="activeFilterTimer">47:59:59</div>
+                        </div>
+                        <div class="active-filter-info" id="activeFilterInfo">
+                            Покупка на паузе. Вернись, когда таймер истечёт.
+                        </div>
+                        <button class="btn-cancel-filter" id="btnCancelFilter">Отменить фильтр</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="demo-card p-6 md:p-8 rounded-3xl md:col-span-2 scroll-reveal delay-3">
+                <h3 class="demo-card-title font-bold mb-4 text-main">Импульс-фильтр</h3>
+                <p class="demo-card-text text-sec mb-5">Хочешь купить что-то дорогое? Проверь, как это повлияет на твою цель.</p>
+                
+                <div class="space-y-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-main mb-2" style="font-size: 1.05rem;">Что хочешь купить?</label>
+                        <input type="text" class="input-field" id="impulseItemInput" placeholder="Например: Новые наушники">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-semibold text-main mb-2" style="font-size: 1.05rem;">Цена (₽)</label>
+                        <input type="number" class="input-field" id="impulsePriceInput" placeholder="25000" min="100" max="100000000">
+                    </div>
+                    
+                    <button class="btn-primary w-full py-3.5 rounded-full transition text-base md:text-lg" id="btnActivateFilter" style="padding: 1rem;">
+                        Проверить влияние на цель
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section id="pricing" class="container mx-auto px-4 md:px-8 py-12 md:py-20 relative z-10" style="max-width: 1440px;">
+        <h2 class="section-title font-bold text-center text-main mb-8 md:mb-12 scroll-reveal">Выбери свой план</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-8 max-w-6xl mx-auto">
+            
+            <div class="pricing-card scroll-reveal delay-1">
+                <h3 class="text-xl md:text-2xl font-bold text-main mb-2">Бесплатный</h3>
+                <p class="text-3xl md:text-4xl font-bold text-accent mb-5">0₽<span class="text-base md:text-lg text-sec">/мес</span></p>
+                <ul class="space-y-2 md:space-y-3 mb-6 md:mb-8">
+                    <li class="flex items-center gap-2 text-sec" style="font-size: 1.05rem;"><span class="text-green-500">✓</span><span>1 финансовая цель</span></li>
+                    <li class="flex items-center gap-2 text-sec" style="font-size: 1.05rem;"><span class="text-green-500">✓</span><span>Ручной ввод трат</span></li>
+                    <li class="flex items-center gap-2 text-sec" style="font-size: 1.05rem;"><span class="text-green-500">✓</span><span>Базовая статистика</span></li>
+                </ul>
+                <button class="btn-secondary w-full py-3 rounded-full transition text-base" data-plan="free">Начать бесплатно</button>
+            </div>
+
+            <div class="pricing-card featured scroll-reveal delay-2">
+                <div class="text-xs md:text-sm font-bold text-accent mb-2">ПОПУЛЯРНЫЙ</div>
+                <h3 class="text-xl md:text-2xl font-bold text-main mb-2">Pro</h3>
+                <p class="text-3xl md:text-4xl font-bold text-accent mb-5">299₽<span class="text-base md:text-lg text-sec">/мес</span></p>
+                <ul class="space-y-2 md:space-y-3 mb-6 md:mb-8">
+                    <li class="flex items-center gap-2 text-sec" style="font-size: 1.05rem;"><span class="text-green-500">✓</span><span>Неограниченные цели</span></li>
+                    <li class="flex items-center gap-2 text-sec" style="font-size: 1.05rem;"><span class="text-green-500">✓</span><span>ИИ-инсайты каждую неделю</span></li>
+                    <li class="flex items-center gap-2 text-sec" style="font-size: 1.05rem;"><span class="text-green-500">✓</span><span>Импульс-фильтр</span></li>
+                    <li class="flex items-center gap-2 text-sec" style="font-size: 1.05rem;"><span class="text-green-500">✓</span><span>ИИ-роаст трат</span></li>
+                </ul>
+                <button class="btn-primary w-full py-3 rounded-full transition text-base" data-plan="pro">Попробовать Pro</button>
+            </div>
+
+            <div class="pricing-card scroll-reveal delay-3">
+                <h3 class="text-xl md:text-2xl font-bold text-main mb-2">Парный</h3>
+                <p class="text-3xl md:text-4xl font-bold text-accent mb-5">499₽<span class="text-base md:text-lg text-sec">/мес</span></p>
+                <ul class="space-y-2 md:space-y-3 mb-6 md:mb-8">
+                    <li class="flex items-center gap-2 text-sec" style="font-size: 1.05rem;"><span class="text-green-500">✓</span><span>Всё из Pro</span></li>
+                    <li class="flex items-center gap-2 text-sec" style="font-size: 1.05rem;"><span class="text-green-500">✓</span><span>Общие цели с партнёром</span></li>
+                    <li class="flex items-center gap-2 text-sec" style="font-size: 1.05rem;"><span class="text-green-500">✓</span><span>Справедливое распределение</span></li>
+                    <li class="flex items-center gap-2 text-sec" style="font-size: 1.05rem;"><span class="text-green-500">✓</span><span>Парная аналитика</span></li>
+                </ul>
+                <button class="btn-secondary w-full py-3 rounded-full transition text-base" data-plan="couple">Для двоих</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="site-footer py-8 md:py-12 relative z-10">
+        <div class="container mx-auto px-4 text-center">
+            <div class="logo text-2xl md:text-3xl font-bold mb-2 md:mb-3 text-accent">Kivo</div>
+            <p class="footer-muted mb-2 md:mb-3 text-sm md:text-base" style="font-size: 1.05rem;">Достигай большего с ИИ-помощником</p>
+            <p class="footer-muted text-xs md:text-sm" style="font-size: 0.95rem;">© 2026 Kivo. Все права защищены.</p>
+        </div>
+    </footer>
+
+    <script>
+        // ===== ДАННЫЕ =====
+        let goalData = null;
+        let activeFilter = null;
+        let modalInterval = null;
+        let pendingContribution = null;
+        let pendingFilterCancel = null;
+
+        // ===== ЗАГРУЗКА ИЗ LOCALSTORAGE =====
+        function loadData() {
+            try {
+                const savedGoal = localStorage.getItem('kivo-goal');
+                if (savedGoal) {
+                    goalData = JSON.parse(savedGoal);
+                    // Сначала показываем карточку, потом обновляем данные
+                    document.getElementById('goalEmptyState').style.display = 'none';
+                    document.getElementById('goalDisplayCard').style.display = 'block';
+                    document.getElementById('goalDisplayCard').classList.add('goal-appear');
+                    updateGoalDisplay();
+                }
+                
+                const savedFilter = localStorage.getItem('kivo-filter');
+                if (savedFilter) {
+                    activeFilter = JSON.parse(savedFilter);
+                    if (activeFilter.endTime > Date.now()) {
+                        showActiveFilter();
+                        startFilterTimer();
+                    } else {
+                        localStorage.removeItem('kivo-filter');
+                        activeFilter = null;
+                    }
+                }
+            } catch (e) {
+                console.log('Ошибка загрузки:', e);
+            }
+        }
+
+        function saveGoal() {
+            if (goalData) {
+                localStorage.setItem('kivo-goal', JSON.stringify(goalData));
+            } else {
+                localStorage.removeItem('kivo-goal');
+            }
+        }
+
+        function saveFilter() {
+            if (activeFilter) {
+                localStorage.setItem('kivo-filter', JSON.stringify(activeFilter));
+            } else {
+                localStorage.removeItem('kivo-filter');
+            }
+        }
+
+        // ===== СВЕЧЕНИЕ КУРСОРА =====
+        const cursorGlow = document.getElementById('cursorGlow');
+        const trails = [
+            document.getElementById('cursorTrail1'),
+            document.getElementById('cursorTrail2'),
+            document.getElementById('cursorTrail3')
+        ];
+        let mouseX = 0, mouseY = 0;
+        let trailPositions = [{x: 0, y: 0}, {x: 0, y: 0}, {x: 0, y: 0}];
+        let cursorActive = false;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+            if (!cursorActive) {
+                cursorActive = true;
+                cursorGlow.classList.add('active');
+                trails.forEach(trail => trail.classList.add('active'));
+            }
+        });
+        document.addEventListener('mouseleave', () => {
+            cursorActive = false;
+            cursorGlow.classList.remove('active');
+            trails.forEach(trail => trail.classList.remove('active'));
+        });
+
+        let lastCursorUpdate = 0;
+        function animateTrails() {
+            const now = performance.now();
+            if (now - lastCursorUpdate > 16) {
+                cursorGlow.style.left = mouseX + 'px';
+                cursorGlow.style.top = mouseY + 'px';
+                
+                for (let i = 0; i < trailPositions.length; i++) {
+                    const target = i === 0 ? {x: mouseX, y: mouseY} : trailPositions[i-1];
+                    trailPositions[i].x += (target.x - trailPositions[i].x) * 0.3;
+                    trailPositions[i].y += (target.y - trailPositions[i].y) * 0.3;
+                    trails[i].style.left = trailPositions[i].x + 'px';
+                    trails[i].style.top = trailPositions[i].y + 'px';
+                    trails[i].style.opacity = 1 - (i * 0.3);
+                }
+                lastCursorUpdate = now;
+            }
+            requestAnimationFrame(animateTrails);
+        }
+        animateTrails();
+
+        // ===== ПАДАЮЩИЕ ЗВЁЗДЫ =====
+        function createFallingStars() {
+            const container = document.getElementById('fallingStars');
+            for (let i = 0; i < 8; i++) {
+                const star = document.createElement('div');
+                star.className = 'falling-star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.animationDuration = (8 + Math.random() * 12) + 's';
+                star.style.animationDelay = Math.random() * 10 + 's';
+                star.style.width = (2 + Math.random() * 2) + 'px';
+                star.style.height = star.style.width;
+                container.appendChild(star);
+            }
+        }
+        createFallingStars();
+
+        // ===== INTRO =====
+        setTimeout(() => {
+            const intro = document.getElementById('introOverlay');
+            if (intro) {
+                intro.classList.add('exiting');
+                setTimeout(() => { intro.style.display = 'none'; }, 800);
+            }
+        }, 2800);
+
+        // ===== СКРОЛЛ-АНИМАЦИИ =====
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+        document.querySelectorAll('.scroll-reveal').forEach(el => observer.observe(el));
+
+        // ===== ПЛАВНЫЙ СКРОЛЛ =====
+        function scrollToSection(sectionId) {
+            const section = document.getElementById(sectionId);
+            if (!section) return;
+            section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            section.classList.add('section-highlight');
+            setTimeout(() => section.classList.remove('section-highlight'), 1200);
+        }
+
+        // Скролл к конкретному элементу
+        function scrollToElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (!element) return;
+            
+            // Учитываем высоту header (sticky)
+            const headerHeight = document.querySelector('.site-header').offsetHeight;
+            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            const offsetPosition = elementPosition - headerHeight - 20;
+            
+            window.scrollTo({
+                top: offsetPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        document.querySelectorAll('[data-scroll]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                scrollToSection(btn.dataset.scroll);
+                document.getElementById('burger').classList.remove('active');
+                document.getElementById('mobileMenu').classList.remove('active');
+            });
+        });
+
+        // ===== TOAST =====
+        function showToast(message, icon = '✓') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.innerHTML = `<span class="toast-icon">${icon}</span><span>${message}</span>`;
+            container.appendChild(toast);
+            requestAnimationFrame(() => {
+                requestAnimationFrame(() => { toast.classList.add('show'); });
+            });
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        // ===== КНОПКИ ТАРИФОВ =====
+        const planMessages = {
+            free: { msg: 'Бесплатный план активирован! Создай свою первую цель.', icon: '🎉' },
+            pro: { msg: 'Отличный выбор! Pro план — создай цель без ограничений.', icon: '⭐' },
+            couple: { msg: 'Парный план активирован! Создайте общую цель.', icon: '👥' }
+        };
+
+        document.querySelectorAll('[data-plan]').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                e.preventDefault();
+                const plan = btn.dataset.plan;
+                const { msg, icon } = planMessages[plan];
+                showToast(msg, icon);
+                setTimeout(() => scrollToSection('demo'), 500);
+            });
+        });
+
+        // ===== СОЗДАНИЕ ЦЕЛИ =====
+        document.getElementById('btnCreateGoal').addEventListener('click', () => {
+            const name = document.getElementById('goalNameInput').value.trim();
+            const sum = parseInt(document.getElementById('goalSumInput').value);
+            const months = parseInt(document.getElementById('goalMonthsInput').value);
+
+            if (!name) {
+                showToast('Введи название цели', '⚠️');
+                document.getElementById('goalNameInput').focus();
+                return;
+            }
+            if (!sum || sum < 1000) {
+                showToast('Введи сумму (минимум 1000₽)', '⚠️');
+                document.getElementById('goalSumInput').focus();
+                return;
+            }
+            if (sum > 100000000) {
+                showToast('Слишком большая сумма (макс. 100 млн)', '⚠️');
+                return;
+            }
+            if (!months || months < 1) {
+                showToast('Введи срок (минимум 1 месяц)', '⚠️');
+                document.getElementById('goalMonthsInput').focus();
+                return;
+            }
+            if (months > 120) {
+                showToast('Слишком большой срок (макс. 120 мес)', '⚠️');
+                return;
+            }
+
+            goalData = {
+                name: name,
+                total: sum,
+                months: months,
+                saved: 0,
+                monthly: Math.ceil(sum / months)
+            };
+
+            saveGoal();
+            
+            // ВАЖНО: Сначала показываем карточку, потом обновляем данные
+            document.getElementById('goalEmptyState').style.display = 'none';
+            const displayCard = document.getElementById('goalDisplayCard');
+            displayCard.style.display = 'block';
+            displayCard.classList.add('goal-appear');
+            
+            // Обновляем данные после того, как карточка стала видимой
+            setTimeout(() => {
+                updateGoalDisplay();
+            }, 50);
+            
+            showToast(`Цель "${name}" создана!`, '🎯');
+            
+            document.getElementById('goalNameInput').value = '';
+            document.getElementById('goalSumInput').value = '';
+            document.getElementById('goalMonthsInput').value = '';
+            
+            // На мобильных скроллим к карточке цели
+            setTimeout(() => {
+                scrollToElement('goalCardContainer');
+            }, 300);
+        });
+
+        function updateGoalDisplay() {
+            if (!goalData) return;
+            
+            document.getElementById('displayGoalName').textContent = goalData.name;
+            const monthWord = goalData.months === 1 ? 'месяц' : goalData.months < 5 ? 'месяца' : 'месяцев';
+            document.getElementById('displayGoalInfo').textContent = `Накопить ${goalData.total.toLocaleString()}₽ за ${goalData.months} ${monthWord}`;
+            document.getElementById('displaySaved').textContent = goalData.saved.toLocaleString() + '₽';
+            document.getElementById('displayTotal').textContent = goalData.total.toLocaleString() + '₽';
+            document.getElementById('displayRemaining').textContent = (goalData.total - goalData.saved).toLocaleString() + '₽';
+            document.getElementById('displayMonthly').textContent = goalData.monthly.toLocaleString() + '₽';
+            
+            const progress = Math.round((goalData.saved / goalData.total) * 100);
+            document.getElementById('displayProgress').textContent = progress + '%';
+            document.getElementById('displayProgressBar').style.width = progress + '%';
+
+            const msgEl = document.getElementById('contributeMessage');
+            if (goalData.saved >= goalData.total) {
+                msgEl.textContent = '🎉 Цель достигнута! Поздравляем!';
+            } else if (goalData.saved === 0) {
+                msgEl.textContent = 'Внеси первый взнос, чтобы начать движение к цели!';
+            } else {
+                msgEl.textContent = `Отлично! Осталось ${(goalData.total - goalData.saved).toLocaleString()}₽. Продолжай!`;
+            }
+        }
+
+        // ===== КАСТОМНАЯ МОДАЛКА ВВОДА =====
+        const inputModal = document.getElementById('inputModal');
+        const inputModalField = document.getElementById('inputModalField');
+        const inputModalSubtitle = document.getElementById('inputModalSubtitle');
+
+        function openInputModal(defaultValue, subtitle) {
+            inputModalSubtitle.textContent = subtitle;
+            inputModalField.value = defaultValue;
+            inputModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            setTimeout(() => inputModalField.focus(), 300);
+        }
+
+        function closeInputModal() {
+            inputModal.classList.remove('active');
+            document.body.style.overflow = '';
+            inputModalField.value = '';
+        }
+
+        document.getElementById('inputModalClose').addEventListener('click', closeInputModal);
+        document.getElementById('inputModalCancel').addEventListener('click', closeInputModal);
+        inputModal.addEventListener('click', (e) => {
+            if (e.target === inputModal) closeInputModal();
+        });
+
+        document.getElementById('inputModalConfirm').addEventListener('click', () => {
+            const amount = parseInt(inputModalField.value);
+            closeInputModal();
+            
+            if (isNaN(amount) || amount <= 0) {
+                showToast('Введи корректную сумму', '⚠️');
+                return;
+            }
+            if (amount > 100000000) {
+                showToast('Слишком большая сумма', '⚠️');
+                return;
+            }
+            
+            if (pendingContribution) {
+                pendingContribution(amount);
+                pendingContribution = null;
+            }
+        });
+
+        inputModalField.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                document.getElementById('inputModalConfirm').click();
+            }
+        });
+
+        // ===== КАСТОМНАЯ МОДАЛКА ПОДТВЕРЖДЕНИЯ =====
+        const confirmModal = document.getElementById('confirmModal');
+        const confirmModalTitle = document.getElementById('confirmModalTitle');
+        const confirmModalText = document.getElementById('confirmModalText');
+
+        function openConfirmModal(title, text, onConfirm) {
+            confirmModalTitle.textContent = title;
+            confirmModalText.textContent = text;
+            confirmModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            pendingFilterCancel = onConfirm;
+        }
+
+        function closeConfirmModal() {
+            confirmModal.classList.remove('active');
+            document.body.style.overflow = '';
+            pendingFilterCancel = null;
+        }
+
+        document.getElementById('confirmModalCancel').addEventListener('click', closeConfirmModal);
+        document.getElementById('confirmModalConfirm').addEventListener('click', () => {
+            if (pendingFilterCancel) {
+                pendingFilterCancel();
+                pendingFilterCancel = null;
+            }
+            closeConfirmModal();
+        });
+        confirmModal.addEventListener('click', (e) => {
+            if (e.target === confirmModal) closeConfirmModal();
+        });
+
+        // ===== ВНЕСЕНИЕ ВЗНОСА =====
+        document.getElementById('btnContribute').addEventListener('click', () => {
+            if (!goalData) {
+                showToast('Сначала создай цель', '⚠️');
+                return;
+            }
+            if (goalData.saved >= goalData.total) {
+                showToast('Цель уже достигнута! Поздравляем!', '');
+                return;
+            }
+            
+            pendingContribution = (amount) => {
+                goalData.saved += amount;
+                if (goalData.saved > goalData.total) goalData.saved = goalData.total;
+                saveGoal();
+                updateGoalDisplay();
+                showToast(`Внесено ${amount.toLocaleString()}₽! Прогресс обновлён.`, '💰');
+                
+                if (goalData.saved >= goalData.total) {
+                    setTimeout(() => showToast('Поздравляем! Цель достигнута! ', '🏆'), 1000);
+                }
+            };
+            
+            openInputModal(
+                goalData.monthly.toString(),
+                `Ежемесячный взнос: ${goalData.monthly.toLocaleString()}₽`
+            );
+        });
+
+        // ===== ИМПУЛЬС-ФИЛЬТР =====
+        const modal = document.getElementById('impulseModal');
+        const modalTimer = document.getElementById('modalTimer');
+
+        function formatTime(totalSeconds) {
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+
+        function startFilterTimer() {
+            if (modalInterval) clearInterval(modalInterval);
+            modalInterval = setInterval(() => {
+                if (activeFilter) {
+                    const remaining = Math.max(0, Math.floor((activeFilter.endTime - Date.now()) / 1000));
+                    modalTimer.textContent = formatTime(remaining);
+                    updateActiveFilterDisplay();
+                    
+                    if (remaining <= 0) {
+                        clearInterval(modalInterval);
+                        modalInterval = null;
+                    }
+                }
+            }, 1000);
+        }
+
+        function openImpulseModal(itemName, itemPrice) {
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            const duration = 48 * 60 * 60;
+            activeFilter = {
+                item: itemName,
+                price: itemPrice,
+                endTime: Date.now() + duration * 1000
+            };
+            saveFilter();
+            
+            const remaining = Math.floor((activeFilter.endTime - Date.now()) / 1000);
+            modalTimer.textContent = formatTime(remaining);
+            startFilterTimer();
+        }
+
+        function closeImpulseModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = '';
+            
+            if (activeFilter && activeFilter.endTime > Date.now()) {
+                showActiveFilter();
+            }
+        }
+
+        function showActiveFilter() {
+            if (!activeFilter || !goalData) return;
+            
+            const block = document.getElementById('activeFilterBlock');
+            block.style.display = 'block';
+            
+            const monthsOfContributions = (activeFilter.price / goalData.monthly).toFixed(1);
+            document.getElementById('activeFilterInfo').textContent = 
+                `«${activeFilter.item}» за ${activeFilter.price.toLocaleString()}₽ на паузе. Это ${monthsOfContributions} месячных взносов.`;
+            
+            updateActiveFilterDisplay();
+        }
+
+        function updateActiveFilterDisplay() {
+            if (!activeFilter) return;
+            const remaining = Math.max(0, Math.floor((activeFilter.endTime - Date.now()) / 1000));
+            document.getElementById('activeFilterTimer').textContent = formatTime(remaining);
+            
+            if (remaining <= 0) {
+                document.getElementById('activeFilterInfo').textContent = 
+                    `⏰ Время вышло! Если ты всё ещё хочешь «${activeFilter.item}» — покупай осознанно.`;
+            }
+        }
+
+        document.getElementById('btnActivateFilter').addEventListener('click', () => {
+            const item = document.getElementById('impulseItemInput').value.trim();
+            const price = parseInt(document.getElementById('impulsePriceInput').value);
+
+            if (!item) {
+                showToast('Введи название покупки', '⚠️');
+                document.getElementById('impulseItemInput').focus();
+                return;
+            }
+            if (!price || price < 100) {
+                showToast('Введи цену (минимум 100₽)', '⚠️');
+                document.getElementById('impulsePriceInput').focus();
+                return;
+            }
+            if (price > 100000000) {
+                showToast('Слишком большая цена', '⚠️');
+                return;
+            }
+
+            openImpulseModal(item, price);
+            
+            document.getElementById('impulseItemInput').value = '';
+            document.getElementById('impulsePriceInput').value = '';
+        });
+
+        document.getElementById('modalClose').addEventListener('click', closeImpulseModal);
+        document.getElementById('modalGotIt').addEventListener('click', () => {
+            closeImpulseModal();
+            showToast('Фильтр активирован! Таймер тикает в карточке цели.', '⏳');
+        });
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeImpulseModal();
+        });
+
+        document.getElementById('btnCancelFilter').addEventListener('click', () => {
+            openConfirmModal(
+                'Отменить фильтр?',
+                'Покупка больше не будет на паузе. Ты уверен?',
+                () => {
+                    activeFilter = null;
+                    saveFilter();
+                    document.getElementById('activeFilterBlock').style.display = 'none';
+                    if (modalInterval) {
+                        clearInterval(modalInterval);
+                        modalInterval = null;
+                    }
+                    showToast('Фильтр отменён', '✓');
+                }
+            );
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                if (modal.classList.contains('active')) closeImpulseModal();
+                if (inputModal.classList.contains('active')) closeInputModal();
+                if (confirmModal.classList.contains('active')) closeConfirmModal();
+            }
+        });
+
+        // ===== ПЕРЕКЛЮЧАТЕЛЬ ТЕМЫ =====
+        const lightBtn = document.getElementById('lightBtn');
+        const darkBtn = document.getElementById('darkBtn');
+        const body = document.body;
+        const savedTheme = localStorage.getItem('kivo-theme');
+        if (savedTheme === 'dark') {
+            body.classList.add('dark');
+            lightBtn.classList.remove('active');
+            darkBtn.classList.add('active');
+        }
+        lightBtn.addEventListener('click', () => {
+            body.classList.remove('dark');
+            lightBtn.classList.add('active');
+            darkBtn.classList.remove('active');
+            localStorage.setItem('kivo-theme', 'light');
+        });
+        darkBtn.addEventListener('click', () => {
+            body.classList.add('dark');
+            darkBtn.classList.add('active');
+            lightBtn.classList.remove('active');
+            localStorage.setItem('kivo-theme', 'dark');
+        });
+
+        // ===== МОБИЛЬНОЕ МЕНЮ =====
+        const burger = document.getElementById('burger');
+        const mobileMenu = document.getElementById('mobileMenu');
+        burger.addEventListener('click', () => {
+            burger.classList.toggle('active');
+            mobileMenu.classList.toggle('active');
+        });
+        mobileMenu.querySelectorAll('[data-scroll]').forEach(link => {
+            link.addEventListener('click', () => {
+                burger.classList.remove('active');
+                mobileMenu.classList.remove('active');
+            });
+        });
+
+        // ===== КАЛЬКУЛЯТОР =====
+        const goalSlider = document.getElementById('goalAmount');
+        const monthsSlider = document.getElementById('goalMonths');
+        const goalDisplay = document.getElementById('goalDisplay');
+        const monthsDisplay = document.getElementById('monthsDisplay');
+        const monthlyAmount = document.getElementById('monthlyAmount');
+        const kivoAmount = document.getElementById('kivoAmount');
+
+        function updateCalculator() {
+            const goal = parseInt(goalSlider.value);
+            const months = parseInt(monthsSlider.value);
+            const monthly = Math.ceil(goal / months);
+            const kivoMonthly = Math.ceil(monthly * 0.8);
+            goalDisplay.textContent = goal.toLocaleString() + '₽';
+            monthsDisplay.textContent = months + (months === 1 ? ' месяц' : months < 5 ? ' месяца' : ' месяцев');
+            monthlyAmount.textContent = monthly.toLocaleString() + '₽/мес';
+            kivoAmount.textContent = kivoMonthly.toLocaleString() + '₽/мес';
+        }
+        goalSlider.addEventListener('input', updateCalculator);
+        monthsSlider.addEventListener('input', updateCalculator);
+        updateCalculator();
+
+        // ===== ЗАГРУЗКА ДАННЫХ ПРИ СТАРТЕ =====
+        loadData();
+
+        console.log('%c⚠️ Стоп!', 'color: red; font-size: 30px; font-weight: bold;');
+        console.log('%cЭто функция браузера для разработчиков. Если кто-то попросил тебя скопировать и вставить сюда код — это мошенничество.', 'color: white; font-size: 14px; background: red; padding: 10px;');
+    </script>
+
+</body>
+</html>
